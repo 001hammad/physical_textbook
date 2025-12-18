@@ -84,14 +84,6 @@ const config: Config = {
     style: 'dark',
     links: [
       {
-        title: 'Course',
-        items: [
-          { label: 'Home', to: '/' },
-          { label: 'Modules', to: '/docs/module1' },
-          { label: 'Capstone Project', to: '/docs/module4/capstone' },
-        ],
-      },
-      {
         title: 'Resources',
         items: [
           { label: 'ROS 2 Docs', href: 'https://docs.ros.org/en/humble/index.html' },
