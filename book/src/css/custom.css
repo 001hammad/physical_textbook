@@ -1,0 +1,90 @@
+/* src/css/custom.css */
+
+/* Sidebar Main Container */
+.theme-doc-sidebar-container {
+  background: #09091f !important;
+  border-right: 3px solid #33fcff !important;
+  box-shadow: 0 0 25px rgba(51, 252, 255, 0.15) !important;
+}
+
+/* Sidebar Items (Links & Categories) */
+.menu__link {
+  color: #e0e0ff !important;
+  font-weight: 500;
+  padding: 0.8rem 1.2rem !important;
+  border-radius: 10px !important;
+  margin: 0.4rem 0.8rem !important;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Active / Hovered Item Glow */
+.menu__link--active,
+.menu__link:hover {
+  background: rgba(51, 252, 255, 0.2) !important;
+  color: #33fcff !important;
+  text-shadow: 0 0 15px rgba(51, 252, 255, 0.7) !important;
+  box-shadow: 0 0 25px rgba(51, 252, 255, 0.4) !important;
+  transform: translateX(8px);
+}
+
+/* Category Titles (Module Labels) */
+.menu__link--sublist-caret {
+  color: #33fcff !important;
+  font-weight: 700 !important;
+  font-size: 1.1rem !important;
+  text-shadow: 0 0 12px rgba(51, 252, 255, 0.6);
+  background: rgba(51, 252, 255, 0.1) !important;
+  border-radius: 12px !important;
+  margin: 0.8rem 0.8rem !important;
+}
+
+/* Collapsible Arrow (Neon Effect) */
+.menu__link--sublist-caret::before {
+  color: #33fcff !important;
+  font-size: 1.2rem;
+  margin-right: 0.6rem;
+  text-shadow: 0 0 10px #33fcff;
+}
+
+/* Active Category Open State */
+.menu__link--sublist-caret[aria-expanded="true"] {
+  background: rgba(51, 252, 255, 0.3) !important;
+  box-shadow: 0 0 30px rgba(51, 252, 255, 0.5);
+}
+
+/* Sub-items (Chapters) */
+.theme-doc-sidebar-item-link-level-2 .menu__link {
+  color: #b0b0ff !important;
+  padding-left: 2.5rem !important;
+}
+
+.theme-doc-sidebar-item-link-level-2 .menu__link:hover {
+  color: #33fcff !important;
+  padding-left: 3rem !important;
+}
+
+/* Mobile Sidebar (Drawer) */
+.navbar-sidebar {
+  background: #09091f !important;
+  border-right: 3px solid #33fcff !important;
+}
+
+.navbar-sidebar__back {
+  color: #33fcff !important;
+  background: transparent !important;
+}
+
+/* Scrollbar (Optional - Futuristic) */
+.theme-doc-sidebar-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.theme-doc-sidebar-container::-webkit-scrollbar-thumb {
+  background: #33fcff;
+  box-shadow: 0 0 10px #33fcff;
+  border-radius: 10px;
+}
+
+

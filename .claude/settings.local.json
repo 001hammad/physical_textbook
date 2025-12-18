@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p .specify/memory)",
+      "Bash(npx create-docusaurus@latest . classic)",
+      "Bash(powershell -ExecutionPolicy Bypass -File \".specify/scripts/powershell/check-prerequisites.ps1\" -Json)",
+      "Bash(powershell -ExecutionPolicy Bypass -File \".specify/scripts/powershell/check-prerequisites.ps1\" -Json -RequireTasks -IncludeTasks)",
+      "Bash(dir \"D:\\\\physical_textbook\\\\specs\\\\003-book-module3\\\\checklists\" /B)",
+      "Bash(git rev-parse --git-dir)"
+    ]
+  }
+}
