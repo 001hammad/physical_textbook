@@ -54,6 +54,9 @@ const config: Config = {
     ],
   ],
 
+  plugins: [
+  ],
+
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
@@ -102,7 +105,7 @@ const config: Config = {
     ],
     copyright: `
       <div class="footer-copyright">
-        © ${new Date().getFullYear()} Physical AI & Humanoid Robotics. 
+        © ${new Date().getFullYear()} Physical AI & Humanoid Robotics.
         Built with ❤️ using Docusaurus & Spec-Kit Plus.
       </div>
     `,
