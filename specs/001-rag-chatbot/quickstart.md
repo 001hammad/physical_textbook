@@ -85,7 +85,7 @@ curl http://localhost:8000/api/v1/status
 - `QDRANT_API_KEY`: Qdrant API key (required)
 - `BOOK_CONTENT_PATH`: Path to book content files (optional, for indexing)
 - `CORS_ORIGINS`: Comma-separated list of allowed origins (default: https://physical-textbook.vercel.app)
-- `MAX_TOKENS`: Maximum tokens for Gemini responses (default: 512)
+- `MAX_TOKENS`: Maximum tokens for Gemini responses (default: 1024)
 
 ## Testing
 
