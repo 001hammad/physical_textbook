@@ -59,7 +59,7 @@ const Chatbot: React.FC = () => {
       };
 
       // Call the backend API
-      const response = await fetch('http://localhost:8000/api/v1/chat', {
+      const response = await fetch('https://hammad224-chatbot-backend.hf.space/api/v1/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
