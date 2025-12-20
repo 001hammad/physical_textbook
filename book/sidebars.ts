@@ -37,7 +37,12 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Module 4',
-      items: ['module4/chapter1', 'module4/chapter2', 'module4/chapter3', 'module4/chapter4'],
+      items: [
+        'module4/chapter1',
+        'module4/chapter2',
+        'module4/chapter3',
+        'module4/chapter4',
+      ],
     },
   ],
 };
