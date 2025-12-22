@@ -1,9 +1,9 @@
 <!-- Sync Impact Report:
-Version change: N/A → 1.0.0
-Modified principles: N/A
-Added sections: All principles and governance sections
+Version change: 1.0.0 → 1.1.0
+Modified principles: Added UI/Design principles section
+Added sections: UI/Design Principles section
 Removed sections: None
-Templates requiring updates: ✅ N/A (first creation)
+Templates requiring updates: ⚠ pending (templates may need UI guidelines)
 Follow-up TODOs: None
 -->
 
@@ -62,6 +62,23 @@ The Spec-Kit Plus workflow must be followed strictly in order: constitution → 
 ### No Step Skipping
 Skipping steps, merging phases, or assuming implementation details before the plan stage is not allowed. This preserves the integrity of the spec-driven development process.
 
+## UI/Design Principles
+
+### Premium VIP UI Aesthetic
+The project must implement a futuristic neon cyberpunk look with heavy glow effects and smooth transitions. This creates a distinctive, premium visual identity that engages users and sets the project apart from conventional interfaces.
+
+### Color Scheme Standard
+Dark mode must use #09091f as the background color with #33fcff neon cyan for text, accents, borders, and glow effects. Light mode must maintain the existing toggle functionality with white/light backgrounds and cyan accents. This ensures consistent visual branding across both themes.
+
+### Interactive Element Behavior
+All interactive elements (links, buttons, sidebar items) must have hover glow and lift transitions. This creates a responsive, engaging user experience that reinforces the premium aesthetic.
+
+### Visual Effects Standards
+Headings must feature neon text-shadow with pulse animation, code blocks must have cyan border glow with line numbers, and sidebar items must have hover shift with glow. The navbar and footer must include subtle glow borders, and hero banners must feature big glowing titles. This ensures consistent application of the cyberpunk aesthetic across all components.
+
+### Transition Specifications
+All interactive elements must use 0.3s-0.4s ease transitions on hover/focus states. This creates smooth, polished animations that enhance the premium feel of the interface.
+
 ## Success Criteria
 
 ### Book Functionality
@@ -89,4 +106,4 @@ Changes to this constitution require unanimous agreement from all core contribut
 ### Compliance Review
 Regular compliance reviews should be conducted at the end of each phase to ensure continued adherence to constitutional principles.
 
-**Version**: 1.0.0 | **Ratified**: 2025-12-18 | **Last Amended**: 2025-12-18
+**Version**: 1.1.0 | **Ratified**: 2025-12-18 | **Last Amended**: 2025-12-22
