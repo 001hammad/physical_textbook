@@ -1,9 +1,110 @@
 /* src/css/custom.css */
 
+/* CSS Variables for Neon Theme */
+:root {
+  --neon-bg: #09091f;
+  --neon-accent: #33fcff;
+  --neon-glow: 0 0 15px rgba(51, 252, 255, 0.7);
+  --neon-glow-strong: 0 0 25px rgba(51, 252, 255, 0.8);
+  --neon-glow-weak: 0 0 10px rgba(51, 252, 255, 0.5);
+  --transition-speed: 0.3s;
+  --border-radius: 12px;
+}
+
+/* Global Dark Mode Background */
+html[data-theme='dark'] body {
+  background-color: var(--neon-bg) !important;
+}
+
+/* Main content wrapper */
+.main-wrapper {
+  background-color: var(--neon-bg) !important;
+}
+
+/* Doc page container */
+.doc-page {
+  background-color: var(--neon-bg) !important;
+}
+
+/* Global body styling */
+body {
+  transition: background-color var(--transition-speed) ease;
+}
+
+/* Pulse animation for key elements */
+@keyframes pulse-glow {
+  0% {
+    text-shadow: 0 0 10px var(--neon-accent), 0 0 20px var(--neon-accent);
+    box-shadow: 0 0 10px rgba(51, 252, 255, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 15px var(--neon-accent), 0 0 30px var(--neon-accent);
+    box-shadow: 0 0 20px rgba(51, 252, 255, 0.5);
+  }
+  100% {
+    text-shadow: 0 0 10px var(--neon-accent), 0 0 20px var(--neon-accent);
+    box-shadow: 0 0 10px rgba(51, 252, 255, 0.3);
+  }
+}
+
+/* Neon glow class */
+.neon-glow {
+  text-shadow: var(--neon-glow);
+  box-shadow: var(--neon-glow-weak);
+  transition: all var(--transition-speed) ease;
+}
+
+.neon-glow-hover:hover {
+  text-shadow: var(--neon-glow-strong);
+  box-shadow: var(--neon-glow);
+}
+
+/* Navigation Bar Styling */
+.navbar {
+  background-color: var(--neon-bg) !important;
+  border-bottom: 1px solid rgba(51, 252, 255, 0.3) !important;
+  box-shadow: 0 0 20px rgba(51, 252, 255, 0.1) !important;
+}
+
+.navbar__title {
+  color: var(--neon-accent) !important;
+  text-shadow: 0 0 10px var(--neon-accent) !important;
+  animation: pulse-glow 3s infinite;
+  font-weight: 600;
+}
+
+.navbar__link {
+  color: #e0e0ff !important;
+  transition: all var(--transition-speed) ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.navbar__link:hover {
+  color: var(--neon-accent) !important;
+  text-shadow: var(--neon-glow) !important;
+}
+
+.navbar__link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--neon-accent);
+  transition: width var(--transition-speed) ease;
+  border-radius: 1px;
+}
+
+.navbar__link:hover::after {
+  width: 100%;
+}
+
 /* Sidebar Main Container */
 .theme-doc-sidebar-container {
-  background: #09091f !important;
-  border-right: 3px solid #33fcff !important;
+  background: var(--neon-bg) !important;
+  border-right: 3px solid var(--neon-accent) !important;
   box-shadow: 0 0 25px rgba(51, 252, 255, 0.15) !important;
 }
 
@@ -12,40 +113,49 @@
   color: #e0e0ff !important;
   font-weight: 500;
   padding: 0.8rem 1.2rem !important;
-  border-radius: 10px !important;
+  border-radius: var(--border-radius) !important;
   margin: 0.4rem 0.8rem !important;
-  transition: all 0.3s ease;
+  transition: all var(--transition-speed) ease;
   position: relative;
   overflow: hidden;
+  transform: translateX(0);
 }
 
 /* Active / Hovered Item Glow */
 .menu__link--active,
 .menu__link:hover {
   background: rgba(51, 252, 255, 0.2) !important;
-  color: #33fcff !important;
-  text-shadow: 0 0 15px rgba(51, 252, 255, 0.7) !important;
-  box-shadow: 0 0 25px rgba(51, 252, 255, 0.4) !important;
-  transform: translateX(8px);
+  color: var(--neon-accent) !important;
+  text-shadow: var(--neon-glow) !important;
+  box-shadow: var(--neon-glow-weak) !important;
+  transform: translateX(8px) scale(1.02);
 }
 
 /* Category Titles (Module Labels) */
 .menu__link--sublist-caret {
-  color: #33fcff !important;
+  color: var(--neon-accent) !important;
   font-weight: 700 !important;
   font-size: 1.1rem !important;
   text-shadow: 0 0 12px rgba(51, 252, 255, 0.6);
   background: rgba(51, 252, 255, 0.1) !important;
-  border-radius: 12px !important;
+  border-radius: var(--border-radius) !important;
   margin: 0.8rem 0.8rem !important;
+  transition: all var(--transition-speed) ease;
+}
+
+.menu__link--sublist-caret:hover {
+  background: rgba(51, 252, 255, 0.3) !important;
+  box-shadow: var(--neon-glow-weak) !important;
+  transform: scale(1.02);
 }
 
 /* Collapsible Arrow (Neon Effect) */
 .menu__link--sublist-caret::before {
-  color: #33fcff !important;
+  color: var(--neon-accent) !important;
   font-size: 1.2rem;
   margin-right: 0.6rem;
-  text-shadow: 0 0 10px #33fcff;
+  text-shadow: 0 0 10px var(--neon-accent);
+  transition: all var(--transition-speed) ease;
 }
 
 /* Active Category Open State */
@@ -61,18 +171,19 @@
 }
 
 .theme-doc-sidebar-item-link-level-2 .menu__link:hover {
-  color: #33fcff !important;
+  color: var(--neon-accent) !important;
   padding-left: 3rem !important;
+  transform: translateX(8px) scale(1.02);
 }
 
 /* Mobile Sidebar (Drawer) */
 .navbar-sidebar {
-  background: #09091f !important;
-  border-right: 3px solid #33fcff !important;
+  background: var(--neon-bg) !important;
+  border-right: 3px solid var(--neon-accent) !important;
 }
 
 .navbar-sidebar__back {
-  color: #33fcff !important;
+  color: var(--neon-accent) !important;
   background: transparent !important;
 }
 
@@ -82,9 +193,478 @@
 }
 
 .theme-doc-sidebar-container::-webkit-scrollbar-thumb {
-  background: #33fcff;
-  box-shadow: 0 0 10px #33fcff;
-  border-radius: 10px;
+  background: var(--neon-accent);
+  box-shadow: 0 0 10px var(--neon-accent);
+  border-radius: var(--border-radius);
+}
+
+/* Content Area Styling */
+.doc-content {
+  background-color: var(--neon-bg) !important;
+  color: #e0e0ff;
+}
+
+/* Headings with Neon Glow */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--neon-accent) !important;
+  text-shadow: 0 0 15px rgba(51, 252, 255, 0.6) !important;
+  animation: pulse-glow 4s infinite;
+  margin-top: 1.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
+h1 {
+  font-size: 2.5rem !important;
+  animation: pulse-glow 3s infinite;
+}
+
+h2 {
+  font-size: 2rem !important;
+  animation: pulse-glow 3.5s infinite;
+}
+
+h3 {
+  font-size: 1.75rem !important;
+  animation: pulse-glow 4s infinite;
+}
+
+/* Paragraph styling */
+.markdown > p {
+  color: #e0e0ff !important;
+  line-height: 1.8 !important;
+}
+
+/* Links in content */
+.markdown a {
+  color: var(--neon-accent) !important;
+  text-decoration: underline !important;
+  text-decoration-color: rgba(51, 252, 255, 0.5) !important;
+  transition: all var(--transition-speed) ease;
+  position: relative;
+}
+
+.markdown a:hover {
+  text-shadow: var(--neon-glow) !important;
+  text-decoration-color: var(--neon-accent) !important;
+}
+
+/* Code blocks with cyan glow border */
+code {
+  background-color: rgba(51, 252, 255, 0.05) !important;
+  border: 1px solid rgba(51, 252, 255, 0.3) !important;
+  border-radius: 6px !important;
+  color: var(--neon-accent) !important;
+  padding: 2px 6px !important;
+}
+
+pre code {
+  background-color: #0a0a25 !important;
+  border: 2px solid rgba(51, 252, 255, 0.4) !important;
+  border-radius: var(--border-radius) !important;
+  box-shadow: 0 0 15px rgba(51, 252, 255, 0.2) !important;
+  padding: 1rem !important;
+  overflow-x: auto;
+}
+
+/* Buttons styling */
+.button {
+  background-color: transparent !important;
+  border: 2px solid var(--neon-accent) !important;
+  color: var(--neon-accent) !important;
+  border-radius: var(--border-radius) !important;
+  padding: 0.5rem 1.5rem !important;
+  transition: all var(--transition-speed) ease !important;
+  text-shadow: none !important;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(51, 252, 255, 0.1);
+  z-index: -1;
+  transition: all var(--transition-speed) ease;
+  opacity: 0;
+}
+
+.button:hover {
+  text-shadow: var(--neon-glow) !important;
+  box-shadow: var(--neon-glow-weak) !important;
+  transform: translateY(-2px);
+}
+
+.button:hover::before {
+  opacity: 1;
+}
+
+/* Footer Styling */
+.footer {
+  background-color: var(--neon-bg) !important;
+  border-top: 1px solid rgba(51, 252, 255, 0.3) !important;
+  box-shadow: 0 -5px 20px rgba(51, 252, 255, 0.1) !important;
+}
+
+.footer__title {
+  color: var(--neon-accent) !important;
+  text-shadow: 0 0 10px rgba(51, 252, 255, 0.6) !important;
+  margin-bottom: 1rem !important;
+}
+
+.footer__link {
+  color: #5a5aff !important;
+  transition: all var(--transition-speed) ease;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.footer__link:hover {
+  color: var(--neon-accent) !important;
+  text-shadow: var(--neon-glow) !important;
+}
+
+.footer--dark {
+  --ifm-footer-background-color: var(--neon-bg) !important;
+}
+
+/* Copyright text styling */
+.footer-copyright {
+  color: #b0b0ff !important;
+  text-align: center !important;
+  padding-top: 1rem !important;
+  border-top: 1px solid rgba(51, 252, 255, 0.2) !important;
+}
+
+.footer-copyright a {
+  color: var(--neon-accent) !important;
+  text-decoration: none !important;
+}
+
+.footer-copyright a:hover {
+  text-shadow: var(--neon-glow) !important;
+}
+
+/* Interactive elements general styling */
+a, button, input, select, textarea {
+  transition: all var(--transition-speed) ease !important;
+}
+
+/* Table styling */
+table {
+  background-color: rgba(51, 252, 255, 0.03) !important;
+  border: 1px solid rgba(51, 252, 255, 0.2) !important;
+  border-radius: var(--border-radius) !important;
+}
+
+table th, table td {
+  border: 1px solid rgba(51, 252, 255, 0.2) !important;
+}
+
+table th {
+  background-color: rgba(51, 252, 255, 0.1) !important;
+  color: var(--neon-accent) !important;
+}
+
+/* Blockquote styling */
+blockquote {
+  border-left: 4px solid var(--neon-accent) !important;
+  background-color: rgba(51, 252, 255, 0.05) !important;
+  border-radius: 0 var(--border-radius) var(--border-radius) 0 !important;
+  padding: 1rem 1.5rem !important;
+  margin: 1.5rem 0 !important;
+  box-shadow: 0 0 15px rgba(51, 252, 255, 0.1) !important;
+}
+
+/* List styling */
+.markdown ul, .markdown ol {
+  color: #e0e0ff !important;
+}
+
+/* Light mode list styling */
+html[data-theme='light'] .markdown ul,
+html[data-theme='light'] .markdown ol {
+  color: #333 !important;
+}
+
+/* Ensure list items have proper color in light mode */
+html[data-theme='light'] .markdown li {
+  color: #333 !important;
+}
+
+/* Ensure nested lists also have proper color in light mode */
+html[data-theme='light'] .markdown ul li,
+html[data-theme='light'] .markdown ol li {
+  color: #333 !important;
+}
+
+/* Highlighted text */
+.docusaurus-highlight-code-line {
+  background-color: rgba(51, 252, 255, 0.1) !important;
+}
+
+/* Search bar if present */
+.navbar__search-input {
+  background-color: rgba(51, 252, 255, 0.05) !important;
+  border: 1px solid rgba(51, 252, 255, 0.2) !important;
+  border-radius: var(--border-radius) !important;
+  color: #e0e0ff !important;
+}
+
+.navbar__search-input::placeholder {
+  color: #b0b0ff !important;
+}
+
+/* Dark mode specific overrides */
+html[data-theme='dark'] {
+  --ifm-background-color: var(--neon-bg) !important;
+  --ifm-navbar-background-color: var(--neon-bg) !important;
+  --ifm-footer-background-color: var(--neon-bg) !important;
+  --ifm-menu-color: #e0e0ff !important;
+  --ifm-menu-color-active: var(--neon-accent) !important;
+  --ifm-menu-color-background-active: rgba(51, 252, 255, 0.1) !important;
+}
+
+/* Light mode overrides to maintain toggle functionality */
+html[data-theme='light'] {
+  --ifm-navbar-background-color: white !important;
+  --ifm-footer-background-color: white !important;
+  --ifm-background-color: white !important;
+  --ifm-menu-color: #333 !important;
+  --ifm-menu-color-active: #33fcff !important;
+  --ifm-menu-color-background-active: rgba(51, 252, 255, 0.1) !important;
+  --ifm-color-content: #333 !important;
+  --ifm-color-content-secondary: #666 !important;
+}
+
+/* Light mode global styling */
+html[data-theme='light'] body {
+  background-color: white !important;
+  color: #333 !important;
+}
+
+/* Light mode main content */
+html[data-theme='light'] .main-wrapper,
+html[data-theme='light'] .doc-page,
+html[data-theme='light'] .doc-content {
+  background-color: white !important;
+  color: #333 !important;
+}
+
+/* Light mode navigation bar */
+html[data-theme='light'] .navbar {
+  background-color: white !important;
+  border-bottom: 1px solid #e0e0e0 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+html[data-theme='light'] .navbar__title {
+  color: #33fcff !important;
+  text-shadow: none !important;
+  animation: none !important;
+  font-weight: 600;
+}
+
+html[data-theme='light'] .navbar__link {
+  color: #333 !important;
+}
+
+html[data-theme='light'] .navbar__link:hover {
+  color: #33fcff !important;
+  text-shadow: none !important;
+}
+
+html[data-theme='light'] .navbar__link::after {
+  background-color: #33fcff !important;
+}
+
+/* Light mode sidebar */
+html[data-theme='light'] .theme-doc-sidebar-container {
+  background: white !important;
+  border-right: 3px solid #33fcff !important;
+  box-shadow: 5px 0 15px rgba(0, 0, 0, 0.05) !important;
+}
+
+html[data-theme='light'] .menu__link {
+  color: #333 !important;
+  transition: all var(--transition-speed) ease;
+}
+
+html[data-theme='light'] .menu__link--active,
+html[data-theme='light'] .menu__link:hover {
+  background: rgba(51, 252, 255, 0.1) !important;
+  color: #33fcff !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+  transform: translateX(8px) scale(1.02);
+}
+
+html[data-theme='light'] .menu__link--sublist-caret {
+  color: #33fcff !important;
+  background: rgba(51, 252, 255, 0.05) !important;
+  text-shadow: none !important;
+}
+
+html[data-theme='light'] .menu__link--sublist-caret:hover {
+  background: rgba(51, 252, 255, 0.1) !important;
+  box-shadow: none !important;
+}
+
+html[data-theme='light'] .menu__link--sublist-caret::before {
+  color: #33fcff !important;
+  text-shadow: none !important;
+}
+
+html[data-theme='light'] .theme-doc-sidebar-item-link-level-2 .menu__link {
+  color: #666 !important;
+}
+
+html[data-theme='light'] .theme-doc-sidebar-item-link-level-2 .menu__link:hover {
+  color: #33fcff !important;
+}
+
+/* Light mode headings */
+html[data-theme='light'] h1, html[data-theme='light'] h2, html[data-theme='light'] h3,
+html[data-theme='light'] h4, html[data-theme='light'] h5, html[data-theme='light'] h6 {
+  color: #222 !important;
+  text-shadow: none !important;
+  animation: none !important;
+}
+
+/* Light mode content */
+html[data-theme='light'] .markdown > p {
+  color: #333 !important;
+}
+
+/* Light mode links in content */
+html[data-theme='light'] .markdown a {
+  color: #33fcff !important;
+  text-decoration-color: rgba(51, 252, 255, 0.5) !important;
+}
+
+html[data-theme='light'] .markdown a:hover {
+  text-shadow: none !important;
+  text-decoration-color: #33fcff !important;
+}
+
+/* Light mode code blocks */
+html[data-theme='light'] code {
+  background-color: #f8f9fa !important;
+  border: 1px solid #dee2e6 !important;
+  color: #333 !important;
+}
+
+html[data-theme='light'] pre code {
+  background-color: #f8f9fa !important;
+  border: 1px solid #dee2e6 !important;
+  box-shadow: none !important;
+  color: #333 !important;
+}
+
+/* Light mode buttons */
+html[data-theme='light'] .button {
+  background-color: white !important;
+  border: 2px solid #33fcff !important;
+  color: #33fcff !important;
+}
+
+html[data-theme='light'] .button:hover {
+  text-shadow: none !important;
+  box-shadow: 0 0 10px rgba(51, 252, 255, 0.3) !important;
+  transform: translateY(-2px);
+}
+
+/* Light mode footer */
+html[data-theme='light'] .footer {
+  background-color: white !important;
+  border-top: 1px solid #e0e0e0 !important;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+html[data-theme='light'] .footer__title {
+  color: #222 !important;
+  text-shadow: none !important;
+  font-weight: 600 !important;
+}
+
+html[data-theme='light'] .footer__link {
+  color: #444 !important;
+}
+
+html[data-theme='light'] .footer__link:hover {
+  color: #33fcff !important;
+  text-shadow: none !important;
+}
+
+html[data-theme='light'] .footer-copyright {
+  color: #666 !important;
+  border-top: 1px solid #e0e0e0 !important;
+}
+
+html[data-theme='light'] .footer-copyright a {
+  color: #444 !important;
+}
+
+html[data-theme='light'] .footer-copyright a:hover {
+  color: #33fcff !important;
+}
+
+
+/* Light mode tables */
+html[data-theme='light'] table {
+  background-color: #f8f9fa !important;
+  border: 1px solid #dee2e6 !important;
+}
+
+html[data-theme='light'] table th {
+  background-color: #e9ecef !important;
+  color: #333 !important;
+}
+
+html[data-theme='light'] table th, html[data-theme='light'] table td {
+  border: 1px solid #dee2e6 !important;
+}
+
+/* Light mode blockquotes */
+html[data-theme='light'] blockquote {
+  border-left: 4px solid #33fcff !important;
+  background-color: #f8f9fa !important;
+  box-shadow: none !important;
+}
+
+/* Light mode search input */
+html[data-theme='light'] .navbar__search-input {
+  background-color: #f8f9fa !important;
+  border: 1px solid #dee2e6 !important;
+  border-radius: var(--border-radius) !important;
+  color: #333 !important;
+}
+
+html[data-theme='light'] .navbar__search-input::placeholder {
+  color: #666 !important;
+}
+
+/* Light mode floating buttons/chat widgets */
+html[data-theme='light'] button[class*="fab"],
+html[data-theme='light'] div[class*="chat"],
+html[data-theme='light'] div[class*="widget"],
+html[data-theme='light'] button[style*="position: fixed"],
+html[data-theme='light'] button[style*="position: absolute"] {
+  background-color: #33fcff !important;
+  color: #333 !important;
+  border: 1px solid #33fcff !important;
+}
+
+html[data-theme='light'] button[class*="fab"]:hover,
+html[data-theme='light'] div[class*="chat"]:hover,
+html[data-theme='light'] div[class*="widget"]:hover {
+  background-color: white !important;
+  color: #33fcff !important;
+  box-shadow: 0 0 15px rgba(51, 252, 255, 0.4) !important;
 }
 
 
