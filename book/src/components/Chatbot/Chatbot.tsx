@@ -21,8 +21,6 @@ const Chatbot: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedText, setSelectedText] = useState<string>('');
-  const [mode, setMode] = useState<'normal' | 'selected-text'>('normal');
   const [isExpanded, setIsExpanded] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -38,7 +36,6 @@ const Chatbot: React.FC = () => {
   const handleSendMessage = async () => {
     if (!inputValue.trim() || isLoading) return;
 
-    // Add user message to chat
     const userMessage: Message = {
       id: Date.now().toString(),
       content: inputValue,
@@ -51,14 +48,11 @@ const Chatbot: React.FC = () => {
     setIsLoading(true);
 
     try {
-      // Prepare the request body based on the current mode
       const requestBody = {
         question: inputValue,
-        mode: mode,
-        ...(mode === 'selected-text' && selectedText && { selected_text: selectedText }),
+        mode: 'normal',
       };
 
-      // Call the backend API
       const response = await fetch('https://hammad224-chatbot-backend.hf.space/api/v1/chat', {
         method: 'POST',
         headers: {
@@ -73,7 +67,6 @@ const Chatbot: React.FC = () => {
 
       const data: ChatResponse = await response.json();
 
-      // Add assistant response to chat
       const assistantMessage: Message = {
         id: Date.now().toString(),
         content: data.answer,
@@ -84,8 +77,6 @@ const Chatbot: React.FC = () => {
       setMessages(prev => [...prev, assistantMessage]);
     } catch (error) {
       console.error('Error sending message:', error);
-
-      // Add error message to chat
       const errorMessage: Message = {
         id: Date.now().toString(),
         content: 'Sorry, I encountered an error. Please try again.',
@@ -105,40 +96,6 @@ const Chatbot: React.FC = () => {
     }
   };
 
-  const handleModeToggle = (newMode: 'normal' | 'selected-text') => {
-    setMode(newMode);
-    if (newMode === 'normal') {
-      setSelectedText('');
-    }
-  };
-
-  // Function to handle text selection from the page
-  const handleTextSelection = () => {
-    const selectedText = window.getSelection()?.toString().trim() || '';
-    if (selectedText) {
-      setSelectedText(selectedText);
-      setMode('selected-text');
-    }
-  };
-
-  // Effect to add event listener for text selection
-  useEffect(() => {
-    const handleGlobalSelection = () => {
-      setTimeout(() => {
-        const selectedText = window.getSelection()?.toString().trim() || '';
-        if (selectedText.length > 0) {
-          setSelectedText(selectedText);
-          setMode('selected-text');
-        }
-      }, 0);
-    };
-
-    document.addEventListener('mouseup', handleGlobalSelection);
-    return () => {
-      document.removeEventListener('mouseup', handleGlobalSelection);
-    };
-  }, []);
-
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
   };
@@ -152,36 +109,12 @@ const Chatbot: React.FC = () => {
 
       {isExpanded && (
         <div className={styles.chatbotContent}>
-          {/* Mode Selection */}
-          <div className={styles.modeSelector}>
-            <button
-              className={clsx(styles.modeButton, mode === 'normal' && styles.activeMode)}
-              onClick={() => handleModeToggle('normal')}
-            >
-              Normal Question
-            </button>
-            <button
-              className={clsx(styles.modeButton, mode === 'selected-text' && styles.activeMode)}
-              onClick={() => handleModeToggle('selected-text')}
-            >
-              Selected Text
-            </button>
-          </div>
-
-          {/* Selected Text Display */}
-          {mode === 'selected-text' && selectedText && (
-            <div className={styles.selectedTextDisplay}>
-              <p><strong>Selected text:</strong></p>
-              <p className={styles.selectedText}>{selectedText.substring(0, 100)}{selectedText.length > 100 ? '...' : ''}</p>
-            </div>
-          )}
-
           {/* Chat Messages */}
           <div className={styles.chatMessages}>
             {messages.length === 0 ? (
               <div className={styles.welcomeMessage}>
                 <p>Hello! I'm your AI assistant for the Physical AI & Humanoid Robotics book.</p>
-                <p>You can ask me questions about the book content or analyze selected text.</p>
+                <p>You can ask me questions about the book content.</p>
               </div>
             ) : (
               messages.map((message) => (
@@ -217,13 +150,7 @@ const Chatbot: React.FC = () => {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder={
-                mode === 'normal'
-                  ? 'Ask a question about the book content...'
-                  : selectedText
-                    ? 'Ask about the selected text...'
-                    : 'Select text on the page first, or ask a general question...'
-              }
+              placeholder="Ask a question about the book content..."
               className={styles.inputField}
               rows={3}
               disabled={isLoading}
